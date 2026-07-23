@@ -1,1 +1,43 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYM NEXA | The Beast Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@300;400;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; background: #000; color: #fff; }
+        .heading { font-family: 'Orbitron', sans-serif; }
+        .gold { color: #D4AF37; }
+        .btn-gold { background: #D4AF37; color: #000; font-weight: bold; padding: 12px 30px; border-radius: 50px; transition: 0.3s; }
+        .btn-gold:hover { transform: scale(1.1); box-shadow: 0 0 20px #D4AF37; }
+        .hero { background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1583454110551-21f2fa2adfcd?q=80&w=2070&auto=format&fit=crop'); background-size: cover; height: 100vh; }
+    </style>
+</head>
+<body>
+    <nav class="flex justify-between items-center px-10 py-6 bg-black/90 sticky top-0 z-50">
+        <div class="heading text-3xl font-black italic">GYM <span class="gold">NEXA</span></div>
+        <ul class="hidden md:flex space-x-8 uppercase font-bold text-sm tracking-widest">
+            <li><a href="index.html" class="gold">Home</a></li>
+            <li><a href="programs.html" class="hover:text-yellow-500">Programs</a></li>
+            <li><a href="membership.html" class="hover:text-yellow-500">Membership</a></li>
+            <li><a href="trainers.html" class="hover:text-yellow-500">Trainers</a></li>
+        </ul>
+        <a href="membership.html" class="btn-gold">JOIN NOW</a>
+    </nav>
+
+    <section class="hero flex items-center px-10">
+        <div class="max-w-3xl">
+            <h1 class="heading text-6xl md:text-8xl mb-4">BUILD YOUR <br><span class="gold">LEGACY</span></h1>
+            <p class="text-xl text-gray-300 mb-8">Araria's premium bodybuilding destination. High-tech machines, hardcore environment.</p>
+            <div class="flex gap-4">
+                <a href="membership.html" class="btn-gold text-center">Get Started</a>
+                <a href="https://maps.app.goo.gl/gpKXwondLNvxUoMu8" target="_blank" class="border border-white px-8 py-3 rounded-full hover:bg-white hover:text-black transition">Find Us</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
