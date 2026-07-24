@@ -78,23 +78,23 @@
             
             <!-- Trainer 1: Tejasvi Nexa (Interactive 3D Stack Effect) -->
             <div class="flex flex-col items-center">
-                <div class="relative group h-[480px] md:h-[520px] w-full max-w-md flex items-center justify-center animate-float select-none" id="trainerStackCard" title="Click anywhere to cycle images">
+                <div class="relative group h-[480px] md:h-[520px] w-full max-w-md flex items-center justify-center animate-float select-none" id="trainerStackCard" title="Click top image to send it to the back">
                     
-                    <!-- Card 3 (Back) -->
-                    <div id="card-c" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl z-10 transform scale-90 translate-y-6 opacity-40 hover:opacity-70">
-                        <img src="./images/c.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose C">
+                    <!-- Card A (Back initially) -->
+                    <div id="card-a" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl">
+                        <img src="./images/a.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose A">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     </div>
 
-                    <!-- Card 2 (Middle) -->
-                    <div id="card-b" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl z-20 transform scale-95 translate-y-3 opacity-70 hover:opacity-90">
+                    <!-- Card B (Middle initially) -->
+                    <div id="card-b" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl">
                         <img src="./images/b.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose B">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                     </div>
 
-                    <!-- Card 1 (Front / Top) -->
-                    <div id="card-a" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border-2 gold-border bg-zinc-900 shadow-2xl z-30 transform scale-100 translate-y-0 gold-glow">
-                        <img src="./images/a.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose A">
+                    <!-- Card C (Top initially) -->
+                    <div id="card-c" class="stack-card absolute inset-0 rounded-3xl overflow-hidden border-2 gold-border bg-zinc-900 shadow-2xl">
+                        <img src="./images/c.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose C">
                         
                         <!-- Gradient Overlay & Info Inside Card -->
                         <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
@@ -112,7 +112,7 @@
                         Recognized as the <strong class="text-amber-400 font-semibold">most formidable conditioning expert</strong> in the industry, Tejasvi has engineered hundreds of champion physiques with unmatched scientific precision and relentless discipline.
                     </p>
                     <div class="mt-3 flex items-center justify-center space-x-2 text-xs text-amber-400/80 font-bold uppercase tracking-widest">
-                        <span>✨ Click card to cycle poses</span>
+                        <span>✨ Click top image to cycle to previous ones</span>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
         &copy; 2026 GYM NEXA. ALL RIGHTS RESERVED. LUXURY FITNESS REDEFINED.
     </footer>
 
-    <!-- JavaScript for Infinite Image Stack Cycle -->
+    <!-- JavaScript for Infinite Image Stack Cycle (Clicking top sends it to back, revealing previous) -->
     <script>
         // Page fade-in on load
         window.addEventListener('DOMContentLoaded', () => {
@@ -159,50 +159,42 @@
         // Stack cycling logic for Trainer 1
         const stackCardContainer = document.getElementById('trainerStackCard');
         
-        let stackState = [
-            { id: 'card-c', z: 30, scale: 'scale-100', translate: 'translate-y-0', opacity: 'opacity-100', pointer: 'pointer-events-auto' },
-            { id: 'card-b', z: 20, scale: 'scale-95', translate: 'translate-y-3', opacity: 'opacity-70', pointer: 'pointer-events-none' },
-            { id: 'card-a', z: 10, scale: 'scale-90', translate: 'translate-y-6', opacity: 'opacity-40', pointer: 'pointer-events-none' }
-        ];
+        // Order array from Top (index 0) to Middle (index 1) to Back (index 2)
+        // Initially: C on top, B in middle, A at back
+        let stackState = ['card-c', 'card-b', 'card-a'];
 
         function updateStackClasses() {
-            stackState.forEach((item, index) => {
-                const el = document.getElementById(item.id);
-                el.className = `stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl transition-all duration-500 ease-out ${item.scale} ${item.translate} ${item.opacity} ${item.pointer}`;
-                el.style.zIndex = item.z;
+            stackState.forEach((cardId, index) => {
+                const el = document.getElementById(cardId);
                 
                 if (index === 0) {
-                    el.classList.add('gold-glow', 'border-2');
-                } else {
-                    el.classList.remove('gold-glow', 'border-2');
+                    // Top Card
+                    el.style.zIndex = '30';
+                    el.className = 'stack-card absolute inset-0 rounded-3xl overflow-hidden border-2 gold-border bg-zinc-900 shadow-2xl transition-all duration-600 ease-out transform scale-100 translate-y-0 opacity-100 gold-glow';
+                    el.style.pointerEvents = 'auto';
+                } else if (index === 1) {
+                    // Middle Card
+                    el.style.zIndex = '20';
+                    el.className = 'stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl transition-all duration-600 ease-out transform scale-95 translate-y-3 opacity-70';
+                    el.style.pointerEvents = 'auto';
+                } else if (index === 2) {
+                    // Back Card
+                    el.style.zIndex = '10';
+                    el.className = 'stack-card absolute inset-0 rounded-3xl overflow-hidden border gold-border bg-zinc-900 shadow-2xl transition-all duration-600 ease-out transform scale-90 translate-y-6 opacity-40';
+                    el.style.pointerEvents = 'auto';
                 }
             });
         }
 
+        // Initialize correct initial layout view
         updateStackClasses();
 
+        // Click handler: Clicking the topmost card sends it straight to the back, smoothly revealing the previous image behind it.
         stackCardContainer.addEventListener('click', () => {
-            const shifted = stackState.shift();
-            stackState.push(shifted);
+            // Take the current top card and move it to the end of the array (back)
+            const topCard = stackState.shift();
+            stackState.push(topCard);
             
-            stackState[0].z = 30;
-            stackState[0].scale = 'scale-100';
-            stackState[0].translate = 'translate-y-0';
-            stackState[0].opacity = 'opacity-100';
-            stackState[0].pointer = 'pointer-events-auto';
-
-            stackState[1].z = 20;
-            stackState[1].scale = 'scale-95';
-            stackState[1].translate = 'translate-y-3';
-            stackState[1].opacity = 'opacity-70';
-            stackState[1].pointer = 'pointer-events-none';
-
-            stackState[2].z = 10;
-            stackState[2].scale = 'scale-90';
-            stackState[2].translate = 'translate-y-6';
-            stackState[2].opacity = 'opacity-40';
-            stackState[2].pointer = 'pointer-events-none';
-
             updateStackClasses();
         });
     </script>
