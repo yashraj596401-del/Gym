@@ -1,47 +1,155 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://tailwindcss.com"></script>
     <title>Trainers - Gym Nexa | Luxury Fitness & Elite Coaching</title>
-    <meta name="description" content="Meet the elite iron mentors at Gym Nexa. Head Coach Tejasvi Nexa and Weight Loss Expert Sarah Fit are here to transform your physique.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
         }
-        .gold-gradient-text {
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #18181b;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
             background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .gold-border {
-            border-color: rgba(212, 175, 55, 0.4);
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        .gold-glow {
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            transition: color 0.3s;
         }
-        .gold-glow-hover:hover {
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.4);
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #fbbf24;
         }
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
+
+        /* Section */
+        section {
+            padding: 140px 20px 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        .animate-float {
-            animation: floatSlow 4s ease-in-out infinite;
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
-        
-        /* Clean Stack Cards Setup */
+
+        .section-header span {
+            color: #fbbf24;
+            font-weight: 700;
+            letter-spacing: 4px;
+            font-size: 12px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 5vw, 54px);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .divider {
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #fbbf24, transparent);
+            margin: 15px auto 20px auto;
+        }
+
+        .section-header p {
+            color: #a1a1aa;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        /* Grid Layout */
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .trainers-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        .trainer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Stack Card Styling */
         .card-stack-wrapper {
             position: relative;
             width: 100%;
-            max-width: 360px;
-            height: 500px;
+            max-width: 350px;
+            height: 480px;
             margin: 0 auto;
             cursor: pointer;
+            user-select: none;
         }
+
         .stack-card {
             position: absolute;
             top: 0;
@@ -49,131 +157,216 @@
             width: 100%;
             height: 100%;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 1.5rem;
+            border-radius: 24px;
             overflow: hidden;
             background-color: #18181b;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+        }
+
+        .stack-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px 20px;
+            background: linear-gradient(to top, #000000 0%, rgba(0,0,0,0.8) 60%, transparent 100%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: #fbbf24;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+        }
+
+        .card-overlay h3 {
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .card-overlay p {
+            font-size: 14px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Sarah Card */
+        .static-card {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            background-color: #18181b;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.5);
+            margin: 0 auto;
+        }
+
+        .static-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s;
+        }
+
+        .static-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Descriptions */
+        .trainer-desc {
+            margin-top: 25px;
+            text-align: center;
+            max-width: 380px;
+        }
+
+        .trainer-desc p {
+            color: #d4d4d8;
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .trainer-desc p strong {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        .hint {
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(251, 191, 36, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #18181b;
+            padding: 30px;
+            text-align: center;
+            font-size: 11px;
+            color: #71717a;
+            letter-spacing: 2px;
         }
     </style>
 </head>
-<body class="bg-black text-white selection:bg-amber-500 selection:text-black opacity-0 transition-opacity duration-1000" id="body">
+<body>
 
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 py-5 bg-black/80 backdrop-blur-md border-b border-zinc-900">
-        <div class="text-2xl md:text-3xl font-black tracking-wider">
-            GYM <span class="gold-gradient-text">NEXA</span>
-        </div>
-        <ul class="hidden md:flex space-x-8 font-bold text-sm tracking-widest uppercase">
-            <li><a href="./index.html" class="hover:text-amber-400 transition-colors">Home</a></li>
-            <li><a href="./programs.html" class="hover:text-amber-400 transition-colors">Programs</a></li>
-            <li><a href="./membership.html" class="hover:text-amber-400 transition-colors">Membership</a></li>
-            <li><a href="./trainers.html" class="gold-gradient-text border-b-2 border-amber-500 pb-1">Trainers</a></li>
+    <nav>
+        <div class="logo">GYM <span>NEXA</span></div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./programs.html">Programs</a></li>
+            <li><a href="./membership.html">Membership</a></li>
+            <li><a href="./trainers.html" class="active">Trainers</a></li>
         </ul>
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden text-amber-400 font-bold text-sm uppercase tracking-wider border border-amber-500/30 px-3 py-1.5 rounded-lg bg-amber-500/10">
-            Menu
-        </div>
     </nav>
 
     <!-- Trainers Section -->
-    <section class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen flex flex-col justify-center">
-        
-        <!-- Section Header -->
-        <div class="text-center mb-16 md:mb-20">
-            <span class="text-amber-400 font-bold tracking-[0.3em] uppercase text-xs md:text-sm block mb-3">World-Class Leadership</span>
-            <h2 class="text-4xl md:text-6xl font-black uppercase italic tracking-wider">
-                The <span class="gold-gradient-text">Iron</span> Mentors
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-4"></div>
-            <p class="text-zinc-400 max-w-2xl mx-auto mt-4 text-sm md:text-base font-light">
-                Train under the absolute pinnacle of physical conditioning, bodybuilding mastery, and elite body transformation.
-            </p>
+    <section>
+        <div class="section-header">
+            <span>World-Class Leadership</span>
+            <h2>The <span style="background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Iron</span> Mentors</h2>
+            <div class="divider"></div>
+            <p>Train under the absolute pinnacle of physical conditioning, bodybuilding mastery, and elite body transformation.</p>
         </div>
 
-        <!-- Grid Container -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="trainers-grid">
             
-            <!-- Trainer 1: Tejasvi Nexa (Interactive Stack Effect) -->
-            <div class="flex flex-col items-center w-full">
-                <div class="card-stack-wrapper animate-float select-none" id="trainerStackCard" title="Click to cycle images">
+            <!-- Trainer 1: Tejasvi Nexa (Interactive Stack) -->
+            <div class="trainer-col">
+                <div class="card-stack-wrapper" id="trainerStackCard" title="Click to cycle images">
                     
-                    <!-- Card A (Back) -->
-                    <div id="card-a" class="stack-card border gold-border shadow-2xl">
-                        <img src="./images/a.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose A">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <!-- Card A -->
+                    <div id="card-a" class="stack-card">
+                        <img src="./images/a.jpg" loading="lazy" alt="Tejasvi Nexa Pose A">
+                        <div class="card-overlay">
+                            <span class="badge">Supreme Tier</span>
+                            <h3>Tejasvi Nexa</h3>
+                            <p>Head Coach / Pro Bodybuilder</p>
+                        </div>
                     </div>
 
-                    <!-- Card B (Middle) -->
-                    <div id="card-b" class="stack-card border gold-border shadow-2xl">
-                        <img src="./images/b.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose B">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <!-- Card B -->
+                    <div id="card-b" class="stack-card">
+                        <img src="./images/b.jpg" loading="lazy" alt="Tejasvi Nexa Pose B">
+                        <div class="card-overlay">
+                            <span class="badge">Supreme Tier</span>
+                            <h3>Tejasvi Nexa</h3>
+                            <p>Head Coach / Pro Bodybuilder</p>
+                        </div>
                     </div>
 
-                    <!-- Card C (Top) -->
-                    <div id="card-c" class="stack-card border-2 gold-border shadow-2xl gold-glow">
-                        <img src="./images/c.jpg" loading="lazy" class="w-full h-full object-cover pointer-events-none" alt="Tejasvi Nexa Pose C">
-                        
-                        <!-- Gradient Overlay & Info Inside Card -->
-                        <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                            <span class="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full mb-2">Supreme Tier</span>
-                            <h3 class="text-3xl font-black text-white tracking-wide">Tejasvi Nexa</h3>
-                            <p class="gold-gradient-text font-bold tracking-wide text-sm md:text-base">Head Coach / Pro Bodybuilder</p>
+                    <!-- Card C -->
+                    <div id="card-c" class="stack-card">
+                        <img src="./images/c.jpg" loading="lazy" alt="Tejasvi Nexa Pose C">
+                        <div class="card-overlay">
+                            <span class="badge">Supreme Tier</span>
+                            <h3>Tejasvi Nexa</h3>
+                            <p>Head Coach / Pro Bodybuilder</p>
                         </div>
                     </div>
 
                 </div>
                 
-                <!-- Trainer 1 Sub-description -->
-                <div class="mt-8 text-center max-w-md">
-                    <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-light">
-                        Recognized as the <strong class="text-amber-400 font-semibold">most formidable conditioning expert</strong> in the industry, Tejasvi has engineered hundreds of champion physiques with unmatched scientific precision and relentless discipline.
-                    </p>
-                    <div class="mt-3 flex items-center justify-center space-x-2 text-xs text-amber-400/80 font-bold uppercase tracking-widest">
-                        <span>✨ Tap card to cycle poses</span>
-                    </div>
+                <div class="trainer-desc">
+                    <p>Recognized as the <strong>most formidable conditioning expert</strong> in the industry, Tejasvi has engineered hundreds of champion physiques with unmatched scientific precision and relentless discipline.</p>
+                    <div class="hint">✨ Tap card to cycle poses</div>
                 </div>
             </div>
 
             <!-- Trainer 2: Sarah Fit -->
-            <div class="flex flex-col items-center w-full">
-                <div class="relative group overflow-hidden rounded-3xl border gold-border h-[500px] w-full max-w-[360px] bg-zinc-900 shadow-2xl gold-glow-hover transition-all duration-500 mx-auto">
-                    <img src="./images/sarah.jpg" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" alt="Sarah Fit - Weight Loss Expert">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent z-10">
-                        <span class="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500/50 text-amber-400 text-xs font-bold uppercase tracking-widest rounded-full mb-2">Elite Specialist</span>
-                        <h3 class="text-3xl font-black text-white tracking-wide">Sarah Fit</h3>
-                        <p class="gold-gradient-text font-bold tracking-wide text-sm md:text-base">Weight Loss Expert</p>
+            <div class="trainer-col">
+                <div class="static-card">
+                    <img src="./images/sarah.jpg" loading="lazy" alt="Sarah Fit - Weight Loss Expert">
+                    <div class="card-overlay">
+                        <span class="badge">Elite Specialist</span>
+                        <h3>Sarah Fit</h3>
+                        <p>Weight Loss Expert</p>
                     </div>
                 </div>
 
-                <!-- Trainer 2 Sub-description -->
-                <div class="mt-8 text-center max-w-md">
-                    <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-light">
-                        A trailblazer in sustainable fat loss and metabolic optimization, Sarah empowers clients to achieve <strong class="text-amber-400 font-semibold">transformative body recomposition</strong> through tailored nutrition and dynamic functional routines.
-                    </p>
-                    <div class="mt-3 flex items-center justify-center space-x-2 text-xs text-amber-400/80 font-bold uppercase tracking-widest">
-                        <span>🔥 Elite Fat Loss Architect</span>
-                    </div>
+                <div class="trainer-desc">
+                    <p>A trailblazer in sustainable fat loss and metabolic optimization, Sarah empowers clients to achieve <strong>transformative body recomposition</strong> through tailored nutrition and dynamic functional routines.</p>
+                    <div class="hint">🔥 Elite Fat Loss Architect</div>
                 </div>
             </div>
 
         </div>
-
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-900 py-8 px-6 text-center text-xs text-zinc-500 tracking-wider">
+    <footer>
         &copy; 2026 GYM NEXA. ALL RIGHTS RESERVED. LUXURY FITNESS REDEFINED.
     </footer>
 
-    <!-- JavaScript for Stack Cycling Logic -->
+    <!-- JavaScript -->
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('body').classList.remove('opacity-0');
-        });
-
         const stackContainer = document.getElementById('trainerStackCard');
-        
-        // Stack order: Top (C), Middle (B), Back (A)
         let stackState = ['card-c', 'card-b', 'card-a'];
 
         function updateStack() {
@@ -181,31 +374,29 @@
                 const card = document.getElementById(cardId);
                 
                 if (index === 0) {
-                    // Top Card
                     card.style.zIndex = '30';
                     card.style.transform = 'scale(1) translateY(0px)';
                     card.style.opacity = '1';
                     card.style.pointerEvents = 'auto';
+                    card.style.boxShadow = '0 0 25px rgba(212, 175, 55, 0.3)';
                 } else if (index === 1) {
-                    // Middle Card
                     card.style.zIndex = '20';
-                    card.style.transform = 'scale(0.95) translateY(16px)';
+                    card.style.transform = 'scale(0.95) translateY(14px)';
                     card.style.opacity = '0.7';
                     card.style.pointerEvents = 'none';
+                    card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.5)';
                 } else if (index === 2) {
-                    // Back Card
                     card.style.zIndex = '10';
-                    card.style.transform = 'scale(0.90) translateY(32px)';
+                    card.style.transform = 'scale(0.90) translateY(28px)';
                     card.style.opacity = '0.4';
                     card.style.pointerEvents = 'none';
+                    card.style.boxShadow = '0 5px 10px rgba(0,0,0,0.5)';
                 }
             });
         }
 
-        // Initialize layout positions
         updateStack();
 
-        // Click handler to cycle cards smoothly
         stackContainer.addEventListener('click', () => {
             const topCardId = stackState.shift();
             stackState.push(topCardId);
