@@ -1,42 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Trainers - Gym Nexa</title>
 </head>
 <body class="bg-black text-white">
-    <!-- Navbar (Same) -->
+    <!-- Navbar -->
     <nav class="flex justify-between items-center px-10 py-6">
         <div class="text-3xl font-black">GYM <span style="color:#D4AF37">NEXA</span></div>
         <ul class="flex space-x-8 font-bold">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="programs.html">Programs</a></li>
-            <li><a href="membership.html">Membership</a></li>
+            <li><a href="index.html" class="hover:text-amber-500 transition">Home</a></li>
+            <li><a href="programs.html" class="hover:text-amber-500 transition">Programs</a></li>
+            <li><a href="membership.html" class="hover:text-amber-500 transition">Membership</a></li>
             <li><a href="trainers.html" style="color:#D4AF37">Trainers</a></li>
         </ul>
     </nav>
 
+    <!-- Trainers Section -->
     <section class="py-20 px-10 text-center">
         <h2 class="text-5xl font-black mb-16 uppercase italic">The <span style="color:#D4AF37">Iron</span> Mentors</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            <div class="relative group overflow-hidden rounded-3xl border-2 border-zinc-800">
-                <img src="https://drive.google.com/file/d/1dC3kACi1RLskaFQRt8zg9Jp9dlCitgD3/view?usp=drivesdk">
-                <img src="https://drive.google.com/file/d/1FfvhCMuS5Fiw2xlV0MqGlk6hy2aXWRgg/view?usp=drivesdk">
-                <img src="https://drive.google.com/file/d/1AT-VQoKWbOlED3xwmgmXCCxWAnftsOlj/view?usp=drivesdk">
-                <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black to-transparent">
+            
+            <!-- Trainer 1: Rocky Nexa -->
+            <div class="relative group overflow-hidden rounded-3xl border-2 border-zinc-800 h-[500px]">
+                <!-- Note: Replace URL below with a direct image link or use an Unsplash placeholder -->
+                <img src="https://unsplash.com" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Rocky Nexa">
+                <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/70 to-transparent z-10">
                     <h3 class="text-3xl font-bold">Rocky Nexa</h3>
                     <p class="text-yellow-500 font-bold">Head Coach / Pro Bodybuilder</p>
                 </div>
             </div>
-            <div class="relative group overflow-hidden rounded-3xl border-2 border-zinc-800">
-                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069" class="w-full h-[500px] object-cover group-hover:scale-105 transition duration-500">
-                <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black to-transparent">
+
+            <!-- Trainer 2: Sarah Fit -->
+            <div class="relative group overflow-hidden rounded-3xl border-2 border-zinc-800 h-[500px]">
+                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Sarah Fit">
+                <div class="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black via-black/70 to-transparent z-10">
                     <h3 class="text-3xl font-bold">Sarah Fit</h3>
                     <p class="text-yellow-500 font-bold">Weight Loss Expert</p>
                 </div>
             </div>
+
         </div>
     </section>
 </body>
